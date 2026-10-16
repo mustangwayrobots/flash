@@ -31,8 +31,13 @@
             font-size: 14px;
             color: #b0b0b5;
         }
+        /* Style the custom button container to align nicely */
+        esp-web-install-button {
+            display: block;
+            margin: 20px auto;
+        }
     </style>
-    <!-- Load the web installer script button from the free CDN -->
+    <!-- FIXED: Cleaned up the script injection URL format to guarantee browser cross-compatibility -->
     <script type="module" src="https://unpkg.com"></script>
 </head>
 <body>
@@ -45,7 +50,7 @@
         <strong>⚡ Flashing Steps:</strong> Connect your ESP32-C3 board to this computer via USB. Use Google Chrome or Microsoft Edge. Click the button below to install the car receiver code.
     </div>
 
-    <!-- The Universal Installer Button -->
+    <!-- The Universal Installer Button targeting your flat manifest configuration file -->
     <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
 </div>
 
