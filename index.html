@@ -2,56 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustang Way Robots - Flashing Station</title>
+    <title>Mustang Way Robots Hub</title>
+    <!-- 1. Load the ESP Web Tools script so the custom button tags work -->
+    <script type="module" src="https://unpkg.com"></script>
+    
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a1c;
-            color: #eaeaea;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #25252b;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        h1 { color: #00e676; margin-bottom: 5px; }
-        p { color: #aaa; margin-bottom: 30px; }
-        .instructions {
-            background: #151518;
-            padding: 15px;
-            border-radius: 6px;
-            text-align: left;
-            margin-bottom: 25px;
-            font-size: 14px;
-            color: #b0b0b5;
-        }
-        esp-web-install-button {
-            display: block;
-            margin: 20px auto;
-        }
+        body { font-family: sans-serif; background: #121212; color: #fff; padding: 40px; }
+        h1 { text-align: center; color: #a855f7; }
+        /* A grid structure to display multiple projects beautifully */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .project-card { background: #1e1e1e; border: 1px solid #333; border-radius: 12px; padding: 24px; text-align: center; }
+        .project-card h3 { margin-top: 0; color: #38bdf8; }
+        /* Style the custom installer button */
+        esp-web-install-button { margin-top: 15px; display: inline-block; }
     </style>
-    <!-- FIXED: Pointing directly to your local file to bypass external network time-outs! -->
-    <script type="module" src="installer.js"></script>
 </head>
 <body>
 
-<div class="container">
-    <h1>Mustang Way Robots</h1>
-    <p>Classroom Firmware Distribution Hub</p>
-    
-    <div class="instructions">
-        <strong>⚡ Flashing Steps:</strong> Connect your ESP32-C3 board to this computer via USB. Use Google Chrome or Microsoft Edge. Click the button below to install the car receiver code.
-    </div>
+    <h1>🤖 Mustang Way Robots - Project Hub</h1>
+    <p style="text-align:center;">Connect your ESP32-C3 via USB and click flash to install firmware directly from the browser.</p>
 
-    <!-- The button targeting manifest.json -->
-    <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
-</div>
+    <div class="project-grid">
+
+        <!-- CARD 1: ESP_NOW_CAR Project -->
+        <div class="project-card">
+            <h3>🚗 ESP_NOW_CAR</h3>
+            <p>Firmware for our custom-built RC cars utilizing high-speed ESP-NOW communication protocol.</p>
+            <!-- Points to a manifest inside a folder or another repo -->
+            <esp-web-install-button manifest="./manifests/car_manifest.json"></esp-web-install-button>
+        </div>
+
+        <!-- CARD 2: Flash Tool / Generic Project -->
+        <div class="project-card">
+            <h3>⚡ Flash Core Firmware</h3>
+            <p>The standard baseline testing firmware for DGS Mustang Robotics Club boards.</p>
+            <esp-web-install-button manifest="./manifests/flash_manifest.json"></esp-web-install-button>
+        </div>
+
+        <!-- CARD 3: Future Student Project Placeholder -->
+        <div class="project-card">
+            <h3>🤖 Future Project Card</h3>
+            <p>When a new student group creates a project, you simply add another block of code here!</p>
+            <esp-web-install-button manifest="./manifests/future_manifest.json"></esp-web-install-button>
+        </div>
+
+    </div>
 
 </body>
 </html>
