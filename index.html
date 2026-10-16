@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustang Way Robots - Flashing Station</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1c;
+            color: #eaeaea;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #25252b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        h1 { color: #00e676; margin-bottom: 5px; }
+        p { color: #aaa; margin-bottom: 30px; }
+        .instructions {
+            background: #151518;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #b0b0b5;
+        }
+    </style>
+    <!-- Load the web installer script button from the free CDN -->
+    <script type="module" src="https://unpkg.com"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mustang Way Robots</h1>
+    <p>Classroom Firmware Distribution Hub</p>
+    
+    <div class="instructions">
+        <strong>⚡ Flashing Steps:</strong> Connect your ESP32-C3 board to this computer via USB. Use Google Chrome or Microsoft Edge. Click the button below to install the car receiver code.
+    </div>
+
+    <!-- The Universal Installer Button -->
+    <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
+</div>
+
+</body>
+</html>
