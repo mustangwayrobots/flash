@@ -2,51 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mustang Way Robots Hub</title>
-    <!-- 1. Load the ESP Web Tools script so the custom button tags work -->
-    <script type="module" src="https://unpkg.com"></script>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustang Way Robots - Project Hub</title>
     <style>
-        body { font-family: sans-serif; background: #121212; color: #fff; padding: 40px; }
-        h1 { text-align: center; color: #a855f7; }
-        /* A grid structure to display multiple projects beautifully */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .project-card { background: #1e1e1e; border: 1px solid #333; border-radius: 12px; padding: 24px; text-align: center; }
-        .project-card h3 { margin-top: 0; color: #38bdf8; }
-        /* Style the custom installer button */
-        esp-web-install-button { margin-top: 15px; display: inline-block; }
+        body { font-family: system-ui, sans-serif; background: #0f172a; color: #fff; padding: 40px; margin: 0; text-align: center; }
+        h1 { color: #a855f7; margin-bottom: 5px; }
+        p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px; }
+        
+        /* The Responsive Grid Container */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        
+        /* Turn the cards into clickable button layouts */
+        .project-link { text-decoration: none; color: inherit; display: block; }
+        
+        .project-card { 
+            background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 30px; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: transform 0.2s, border-color 0.2s; cursor: pointer;
+        }
+        /* Make it visually obvious it can be clicked */
+        .project-card:hover { transform: translateY(-5px); border-color: #38bdf8; }
+        
+        .project-card h3 { margin-top: 0; color: #38bdf8; font-size: 1.4rem; }
+        .project-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin: 0; }
     </style>
 </head>
 <body>
 
     <h1>🤖 Mustang Way Robots - Project Hub</h1>
-    <p style="text-align:center;">Connect your ESP32-C3 via USB and click flash to install firmware directly from the browser.</p>
+    <p>Select a project below to open its direct web-installer terminal.</p>
 
-    <div class="project-grid">
+    <!-- This empty grid fills itself automatically using the script below! -->
+    <div class="project-grid" id="hub-grid"></div>
 
-        <!-- CARD 1: ESP_NOW_CAR Project -->
-        <div class="project-card">
-            <h3>🚗 ESP_NOW_CAR</h3>
-            <p>Firmware for our custom-built RC cars utilizing high-speed ESP-NOW communication protocol.</p>
-            <!-- Points to a manifest inside a folder or another repo -->
-            <esp-web-install-button manifest="./manifests/car_manifest.json"></esp-web-install-button>
-        </div>
+    <script>
+        // 🛠️ TEACHER CONFIGURATION MASTER LIST
+        // Whenever you launch a new project repository, simply add it to this array:
+        const myProjects = [
+            {
+                repoName: "ESP_NOW_CAR",
+                title: "🚗 ESP_NOW_CAR",
+                desc: "Firmware for our custom-built RC cars utilizing high-speed ESP-NOW communication protocol."
+            },
+            {
+                repoName: "flash", // Points back to this main tool if needed
+                title: "⚡ Flash Core Firmware",
+                desc: "The standard baseline testing firmware for DGS Mustang Robotics Club boards."
+            }
+        ];
 
-        <!-- CARD 2: Flash Tool / Generic Project -->
-        <div class="project-card">
-            <h3>⚡ Flash Core Firmware</h3>
-            <p>The standard baseline testing firmware for DGS Mustang Robotics Club boards.</p>
-            <esp-web-install-button manifest="./manifests/flash_manifest.json"></esp-web-install-button>
-        </div>
-
-        <!-- CARD 3: Future Student Project Placeholder -->
-        <div class="project-card">
-            <h3>🤖 Future Project Card</h3>
-            <p>When a new student group creates a project, you simply add another block of code here!</p>
-            <esp-web-install-button manifest="./manifests/future_manifest.json"></esp-web-install-button>
-        </div>
-
-    </div>
-
+        // This loops through your list above and builds the HTML layout dynamically
+        const grid = document.getElementById('hub-grid');
+        myProjects.forEach(project => {
+            const cardHTML = `
+                <a class="project-link" href="https://github.io{project.repoName}/">
+                    <div class="project-card">
+                        <h3>${project.title}</h3>
+                        <p>${project.desc}</p>
+                    </div>
+                </a>
+            `;
+            grid.innerHTML += cardHTML;
+        });
+    </script>
 </body>
 </html>
